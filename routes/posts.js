@@ -24,6 +24,7 @@ router.post('/create', checkLogin, function (req, res, next) {
   const author = req.session.user._id
   const title = req.fields.title
   const content = req.fields.content
+  const tag = req.fields.tag
 
   // 校验参数
   try {
@@ -41,7 +42,8 @@ router.post('/create', checkLogin, function (req, res, next) {
   let post = {
     author: author,
     title: title,
-    content: content
+    content: content,
+    tag: tag
   }
 
   PostModel.create(post)
