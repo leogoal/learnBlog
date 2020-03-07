@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
     .then(function (posts) {
       posts = posts.map(function (post) {
         let content = post.content;
-        post.content = content.length > 100 ? `${content.substr(0, 100)}......` : content;
+        post.content = content.length > 100 ? `<strong>[点击标题阅读全文]</strong><br><br>${content.substr(0, 100)}......` : content;
         return post;
       })
       res.render('posts', {
