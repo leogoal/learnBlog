@@ -10,7 +10,7 @@
     </div>
 
     <div class="fourteen wide column">
-      <div class="ui segment">
+      <div class="ui segment <%- 'tag' + post.tag %>">  
         <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
         <pre><%- post.content %></pre>
         <div>

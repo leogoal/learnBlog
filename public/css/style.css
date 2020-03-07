@@ -77,4 +77,19 @@ a:hover {
   color: #999;
 }
 
-/*新加*/
+.post-content .tag0 {
+  border: 2px solid #cd5c5c;
+}
+
+.post-content .tag1 {
+  border: 2px solid #20b2aa;
+}
+
+.post-content .tag2 {
+  border: 2px solid #add8e6;
+}
+
+.post-content .tag3 {
+  border: 2px solid #e6d933;
+}
+
