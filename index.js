@@ -52,6 +52,12 @@ app.use(function (req, res, next) {
   res.locals.user = req.session.user
   res.locals.success = req.flash('success').toString()
   res.locals.error = req.flash('error').toString()
+
+  if('GET' === req.method && req.url.indexOf('/posts?author=') === 0 ) {
+    res.locals.personalHome = true;
+  } else {
+    res.locals.personalHome = false;
+  }
   next()
 })
 

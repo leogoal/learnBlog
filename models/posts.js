@@ -72,6 +72,25 @@ module.exports = {
       .exec()
   },
 
+  //按创建时间降根据tag序获取所有用户文章或者某个特定用户的所有文章
+  getPostsByTag: function getPostsByTag(tag,author) {
+    const query = {}
+    query.tag = tag
+
+    if (author) {
+      query.author = author
+    }
+
+    return Post
+      .find(query)
+      .populate({ path: 'author', model: 'User' })
+      .sort({ _id: -1 })
+      .addCreatedAt()
+      .addCommentsCount()
+      .contentToHtml()
+      .exec()
+  },
+
   // 通过文章 id 给 pv 加 1
   incPv: function incPv (postId) {
     return Post
