@@ -41,8 +41,8 @@ a:hover {
 
 .nav-setting {
   position: fixed;
-  right: 30px;
-  top: 35px;
+  right: 20px;
+  top: 8px;
   z-index: 999;
 }
 
