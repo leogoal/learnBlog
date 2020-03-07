@@ -12,6 +12,11 @@ router.get('/', function (req, res, next) {
 
   PostModel.getPosts(author)
     .then(function (posts) {
+      posts = posts.map(function (post) {
+        let content = post.content;
+        post.content = content.length > 100 ? `${content.substr(0, 100)}......` : content;
+        return post;
+      })
       res.render('posts', {
         posts: posts
       })
