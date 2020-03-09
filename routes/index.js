@@ -8,6 +8,7 @@ module.exports = function (app) {
   app.use('/posts', require('./posts'))
   app.use('/comments', require('./comments'))
   app.use('/posts/tags', require('./tags'))
+  
 
   // 404 page
   app.use(function (req, res) {
