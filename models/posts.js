@@ -123,6 +123,7 @@ module.exports = {
       .addCommentsCount()
       .contentToHtml()
       .subStrContent()
+      .addLikeOrUnLikeCount()
       .exec()
   },
 
