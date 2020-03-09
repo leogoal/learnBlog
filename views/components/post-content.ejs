@@ -16,6 +16,7 @@
         <div>
           <span class="tag"><%= post.created_at %></span>
           <span class="tag right">
+            <span>赞(<%= post.likeCount %> | <%= post.unlikeCount %>踩)</span>
             <span>浏览(<%= post.pv || 0 %>)</span>
             <span>留言(<%= post.commentsCount || 0 %>)</span>
 
