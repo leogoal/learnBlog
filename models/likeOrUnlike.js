@@ -6,11 +6,10 @@ module.exports = {
         return LikeOrUnlike.create(LikeOrUnlike).exec();
     },
 
-    getLikeCountByPostId: function getLikeCountByPostId(postId) {
-
-    },
-
-    getUnlikeCountByPostId: function getUnlikeCountByPostId(postId) {
-
+    getLikeOrUnlikeCountByPostId: function getLikeOrUnlikeCountByPostId(postId) {
+        return Promise.all([
+            LikeOrUnlike.count({ postId: postId, likeOrUnlike: '1' }).exec(),
+            LikeOrUnlike.count({ postId: postId, likeOrUnlike: '0' }).exec()
+        ])
     }
 }

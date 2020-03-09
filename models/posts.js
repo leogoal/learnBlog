@@ -1,6 +1,7 @@
 const marked = require('marked')
 const Post = require('../lib/mongo').Post
 const CommentModel = require('./comments')
+const LikeOrUnLikeModel = require('./likeOrUnlike');
 
 // 给 post 添加留言数 commentsCount
 Post.plugin('addCommentsCount', {
@@ -49,6 +50,28 @@ Post.plugin('subStrContent', {
   }
 })
 
+Post.plugin('addLikeOrUnLikeCount', {
+  afterFind: function (posts) {
+    return Promise.all(posts.map(function (post) {
+      return LikeOrUnLikeModel.getLikeOrUnlikeCountByPostId(post._id).then(function (counts) {
+        post.likeCount = counts[0];
+        post.unlikeCount = counts[1];
+        return post;
+      });
+    }))
+  },
+  afterFindOne: function (post) {
+    if (post) {
+      return LikeOrUnLikeModel.getLikeOrUnlikeCountByPostId(post._id).then(function (counts) {
+        post.likeCount = counts[0];
+        post.unlikeCount = counts[1];
+        return post;
+      });
+    }
+    return post;
+  }
+})
+
 module.exports = {
   // 创建一篇文章
   create: function create(post) {
@@ -61,8 +84,9 @@ module.exports = {
       .findOne({ _id: postId })
       .populate({ path: 'author', model: 'User' })
       .addCreatedAt()
-      .addCommentsCount()
       .contentToHtml()
+      .addCommentsCount()
+      .addLikeOrUnLikeCount()
       .exec()
   },
 
@@ -77,9 +101,10 @@ module.exports = {
       .populate({ path: 'author', model: 'User' })
       .sort({ _id: -1 })
       .addCreatedAt()
-      .addCommentsCount()
       .contentToHtml()
       .subStrContent()
+      .addCommentsCount()
+      .addLikeOrUnLikeCount()
       .exec()
   },
 
