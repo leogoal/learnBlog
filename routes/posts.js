@@ -4,6 +4,7 @@ const router = express.Router()
 const checkLogin = require('../middlewares/check').checkLogin
 const PostModel = require('../models/posts')
 const CommentModel = require('../models/comments')
+const likeOrUnlikeModel = require('../models/likeOrUnlike');
 
 // GET /posts 所有用户或者特定用户的文章页
 //   eg: GET /posts?author=xxx
@@ -65,22 +66,28 @@ router.get('/create', checkLogin, function (req, res, next) {
 // GET /posts/:postId 单独一篇的文章页
 router.get('/:postId', function (req, res, next) {
   const postId = req.params.postId
+  const author = req.session.user._id;
 
   Promise.all([
     PostModel.getPostById(postId), // 获取文章信息
     CommentModel.getComments(postId), // 获取该文章所有留言
+    likeOrUnlikeModel.checkFinished(postId, author),
+
     PostModel.incPv(postId)// pv 加 1
   ])
     .then(function (result) {
       const post = result[0]
       const comments = result[1]
+      const finishedLikeOrUnlike = result[2] > 0;
+
       if (!post) {
         throw new Error('该文章不存在')
       }
 
       res.render('post', {
         post: post,
-        comments: comments
+        comments: comments,
+        finishedLikeOrUnlike: finishedLikeOrUnlike
       })
     })
     .catch(next)
