@@ -154,7 +154,8 @@ module.exports = {
       .then(function (res) {
         // 文章删除后，再删除该文章下的所有留言
         if (res.result.ok && res.result.n > 0) {
-          return CommentModel.delCommentsByPostId(postId)
+          CommentModel.delCommentsByPostId(postId);
+          LikeOrUnLikeModel.delLikeOrUnlikeByPostId(postId);
         }
       })
   }

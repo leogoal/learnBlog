@@ -15,5 +15,11 @@ module.exports = {
 
     checkFinished: function checkFinished(postId, author) {
         return LikeOrUnlike.count({ postId: postId, author: author }).exec();
-    }
+    },
+
+    // 通过文章 id 删除该文章下所有赞/踩
+    delLikeOrUnlikeByPostId: function delLikeOrUnlikeByPostId (postId) {
+        return LikeOrUnlike.deleteMany({ postId: postId }).exec()
+      },
+
 }
