@@ -14,6 +14,7 @@ router.post('/', function (req, res, next) {
                 likeOrUnlike: req.fields.likeOrUnlike
             }
             likeOrUnlikeModel.create(data).then(function () {
+                req.flash('success', '评价成功');
                 return res.redirect('back');
             })
                 .catch(function (e) {
