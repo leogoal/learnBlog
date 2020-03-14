@@ -9,4 +9,5 @@ module.exports = {
     key: 'myblog',
     maxAge: 2592000000
   },
+  port: 3000
 }
