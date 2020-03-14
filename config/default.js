@@ -1,9 +1,12 @@
 module.exports = {
-  port: 3000,
+  options: {
+    host: 'localhost',
+    port: 3306,
+    database: 'session_test'        //数据库名
+  },
   session: {
     secret: 'myblog',
     key: 'myblog',
     maxAge: 2592000000
   },
-  mongodb: 'mongodb://localhost:27017/myblog10'
 }
