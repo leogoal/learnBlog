@@ -1,7 +1,25 @@
 <div class="ui grid">
   <div class="two wide column"></div>
   <div class="eight wide column">
-    <% if(finishedLikeOrUnlike) { %>
+    <% if(!user) { %>
+    <div class="ui labeled button" tabindex="0">
+      <button class="ui red button noUser" name="likeOrUnlike" value="1">
+        <i class="heart icon"></i> 喜欢
+      </button>
+      <a class="ui basic red left pointing label" onclick="return false;">
+        <%= post.likeCount %>
+      </a>
+    </div>
+    <div class="ui labeled button" tabindex="0">
+      <button class="ui basic blue button noUser" name="likeOrUnlike" value="0">
+        <i class="fork icon"></i> 讨厌
+      </button>
+
+      <a class="ui basic left pointing blue label" onclick="return false;">
+        <%= post.unlikeCount %>
+      </a>
+    </div>
+    <% else if(finishedLikeOrUnlike) { %>
     <div class="ui labeled button" tabindex="0">
       <button class="ui red button finishedLikeOrUnlike" name="likeOrUnlike" value="1">
         <i class="heart icon"></i> 喜欢
