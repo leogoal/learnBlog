@@ -19,7 +19,7 @@
         <%= post.unlikeCount %>
       </a>
     </div>
-    <% else if(finishedLikeOrUnlike) { %>
+    <% } else if(finishedLikeOrUnlike) { %>
     <div class="ui labeled button" tabindex="0">
       <button class="ui red button finishedLikeOrUnlike" name="likeOrUnlike" value="1">
         <i class="heart icon"></i> 喜欢
@@ -37,36 +37,22 @@
         <%= post.unlikeCount %>
       </a>
     </div>
-    <% } else {%>
+    <% } else { %>
     <form class="ui reply form" method="post" action="/likeOrUnlike">
       <input name="postId" value="<%= post._id %>" hidden>
       <div class="ui labeled button" tabindex="0">
-        <% if(finishedLikeOrUnlike) { %>
-        <button class="ui red button finishedLikeOrUnlike" name="likeOrUnlike" value="1">
-          <i class="heart icon"></i> 喜欢
-        </button>
-        <% } else {%>
         <button class="ui red button" name="likeOrUnlike" value="1">
           <i class="heart icon"></i> 喜欢
         </button>
-        <% } %>
-
         <a class="ui basic red left pointing label" onclick="return false;">
           <%= post.likeCount %>
         </a>
       </div>
 
       <div class="ui labeled button" tabindex="0">
-        <% if(finishedLikeOrUnlike) { %>
-        <button class="ui basic blue button finishedLikeOrUnlike" name="likeOrUnlike" value="0">
-          <i class="fork icon"></i> 讨厌
-        </button>
-        <% } else {%>
         <button class="ui basic blue button" name="likeOrUnlike" value="0">
           <i class="fork icon"></i> 讨厌
         </button>
-        <% } %>
-
         <a class="ui basic left pointing blue label" onclick="return false;">
           <%= post.unlikeCount %>
         </a>
