@@ -77,6 +77,10 @@ a:hover {
   color: #999;
 }
 
+.post-content .tag-select {
+  color: rgba(#000, #000, #000, 0.9);
+}
+
 /* .post-content .tag0 {
   border: 2px solid #cd5c5c;
 }

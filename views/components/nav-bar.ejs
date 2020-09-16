@@ -3,19 +3,15 @@
     <button class="ui large  icon button disabled">
         <i class="user icon"></i>
     </button>
-
-    <a href="/posts/tags/0?author=<%= queryAuthor %>" class="item">其他</a>
-    <a href="/posts/tags/1?author=<%= queryAuthor %>" class="item">H5总结</a>
-    <a href="/posts/tags/2?author=<%= queryAuthor %>" class="item">前端</a>
-    <a href="/posts/tags/3?author=<%= queryAuthor %>" class="item">Node</a>
+    <% for(let i=0; i<blog.tags.length; i++) {%>
+      <a href="/posts/tags/<%= i %>?author=<%= queryAuthor %>" class="item"><%= blog.tags[i] %></a>
+    <% } %>
     <% } else { %>
     <button class="ui large  icon button disabled">
         <i class="users icon"></i>
     </button>
-
-    <a href="/posts/tags/0" class="item">其他</a>
-    <a href="/posts/tags/1" class="item">H5总结</a>
-    <a href="/posts/tags/2" class="item">前端</a>
-    <a href="/posts/tags/3" class="item">Node</a>
+    <% for(let i=0; i<blog.tags.length; i++) {%>
+      <a href="/posts/tags/<%= i %>" class="item"><%= blog.tags[i] %></a>
+    <% } %>
     <% } %>
 </div>
