@@ -1,11 +1,4 @@
 module.exports = function (app) {
-  app.use(function (req, res, next) {
-    if(req.url === "/posts/icon.jpg") {
-      return;
-    }
-    next()
-  })
-
   app.get('/', function (req, res) {
     res.redirect('/posts')
   })
