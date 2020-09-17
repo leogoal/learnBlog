@@ -3,10 +3,8 @@
 
 <div class="ui grid">
   <div class="two wide column">
-    <a class="avatar"
-       href="/posts?author=<%= user._id %>"
-       data-title="<%= user.name %> | <%= ({m: '男', f: '女', x: '保密'})[user.gender] %>"
-       data-content="<%= user.bio %>">
+    <a class="avatar" href="/posts?author=<%= user._id %>"
+      data-title="<%= user.name %> | <%= ({m: '男', f: '女', x: '保密'})[user.gender] %>" data-content="<%= user.bio %>">
       <img class="avatar" src="/img/<%= user.avatar %>">
     </a>
   </div>
@@ -24,30 +22,14 @@
 
       <div class="ui form">
         <div class="inline fields">
+          <% for(let i=0; i<blog.tags.length; i++) {%>
           <div class="field">
             <div class="ui radio checkbox">
-              <input type="radio" name="tag" value="0" checked="checked">
-              <label>其他</label>
+              <input type="radio" name="tag" value="<%= i %>" disabled="disabled">
+              <label><%= blog.tags[i] %></label>
             </div>
           </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="tag" value="1">
-              <label>h5总结</label>
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="tag" value="2">
-              <label>前端</label>
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="tag" value="3">
-              <label>Node</label>
-            </div>
-          </div>
+          <% } %>
         </div>
       </div>
       <br>

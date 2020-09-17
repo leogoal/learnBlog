@@ -131,7 +131,8 @@ router.get('/:postId/edit', checkLogin, function (req, res, next) {
         throw new Error('权限不足')
       }
       res.render('edit', {
-        post: post
+        post: post,
+        curTag: post.tag
       })
     })
     .catch(next)

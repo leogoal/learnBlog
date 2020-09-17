@@ -1,7 +1,7 @@
 {
   "name": "myblog",
   "version": "1.0.0",
-  "description": "因为热爱[qiong]，所以学习",
+  "description": "清晰的自我认知和定位",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha",
