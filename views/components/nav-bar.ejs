@@ -4,14 +4,14 @@
         <i class="user icon"></i>
     </button>
     <% for(let i=0; i<blog.tags.length; i++) {%>
-      <a href="/posts/tags/<%= i %>?author=<%= queryAuthor %>" class="item"><%= blog.tags[i] %></a>
+      <a href="<%= blog.firstPath %>/posts/tags/<%= i %>?author=<%= queryAuthor %>" class="item"><%= blog.tags[i] %></a>
     <% } %>
     <% } else { %>
     <button class="ui large  icon button disabled">
         <i class="users icon"></i>
     </button>
     <% for(let i=0; i<blog.tags.length; i++) {%>
-      <a href="/posts/tags/<%= i %>" class="item"><%= blog.tags[i] %></a>
+      <a href="<%= blog.firstPath %>/posts/tags/<%= i %>" class="item"><%= blog.tags[i] %></a>
     <% } %>
     <% } %>
 </div>

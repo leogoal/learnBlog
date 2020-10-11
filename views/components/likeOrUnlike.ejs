@@ -38,7 +38,7 @@
       </a>
     </div>
     <% } else { %>
-    <form class="ui reply form" method="post" action="/likeOrUnlike">
+    <form class="ui reply form" method="post" action="<%= blog.firstPath %>/likeOrUnlike">
       <input name="postId" value="<%= post._id %>" hidden>
       <div class="ui labeled button" tabindex="0">
         <button class="ui red button" name="likeOrUnlike" value="1">

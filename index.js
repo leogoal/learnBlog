@@ -45,7 +45,8 @@ app.use(require('express-formidable')({
 app.locals.blog = {
   title: pkg.name,
   description: pkg.description,
-  tags: config.tags
+  tags: config.tags,
+  firstPath: config.firstPath
 }
 
 // 添加模板必需的三个变量
@@ -89,7 +90,7 @@ app.use(expressWinston.errorLogger({
 app.use(function (err, req, res, next) {
   console.error(err)
   req.flash('error', err.message)
-  res.redirect('/posts')
+  res.redirect(`${config.firstPath}/posts`)
 })
 
 if (module.parent) {

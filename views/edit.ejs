@@ -3,14 +3,14 @@
 
 <div class="ui grid">
   <div class="two wide column">
-    <a class="avatar" href="/posts?author=<%= user._id %>"
+    <a class="avatar" href="<%= blog.firstPath %>/posts?author=<%= user._id %>"
       data-title="<%= user.name %> | <%= ({m: '男', f: '女', x: '保密'})[user.gender] %>" data-content="<%= user.bio %>">
       <img class="avatar" src="/img/<%= user.avatar %>">
     </a>
   </div>
 
   <div class="fourteen wide column">
-    <form class="ui form segment" method="post" action="/posts/<%= post._id %>/edit">
+    <form class="ui form segment" method="post" action="<%= blog.firstPath %>/posts/<%= post._id %>/edit">
       <div class="field required">
         <label>标题</label>
         <input type="text" name="title" value="<%= post.title %>">

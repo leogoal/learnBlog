@@ -1,14 +1,17 @@
+const config = require('config-lite')(__dirname)
+const firstPath = config.firstPath;
+
 module.exports = function (app) {
-  app.get('/', function (req, res) {
-    res.redirect('/posts')
+  app.get(`${firstPath}`, function (req, res) {
+    res.redirect(`${firstPath}/posts`)
   })
-  app.use('/signup', require('./signup'))
-  app.use('/signin', require('./signin'))
-  app.use('/signout', require('./signout'))
-  app.use('/posts', require('./posts'))
-  app.use('/comments', require('./comments'))
-  app.use('/posts/tags', require('./tags'))
-  app.use('/likeOrUnlike', require('./likeOrUnlike'))
+  app.use(`${firstPath}/signup`, require('./signup'))
+  app.use(`${firstPath}/signin`, require('./signin'))
+  app.use(`${firstPath}/signout`, require('./signout'))
+  app.use(`${firstPath}/posts`, require('./posts'))
+  app.use(`${firstPath}/comments`, require('./comments'))
+  app.use(`${firstPath}/posts/tags`, require('./tags'))
+  app.use(`${firstPath}/likeOrUnlike`, require('./likeOrUnlike'))
 
   // 404 page
   app.use(function (req, res) {

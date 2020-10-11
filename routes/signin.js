@@ -1,6 +1,7 @@
 const sha1 = require('sha1')
 const express = require('express')
 const router = express.Router()
+const config = require('config-lite')(__dirname)
 
 const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
@@ -44,7 +45,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       delete user.password
       req.session.user = user
       // 跳转到主页
-      res.redirect('/posts')
+      res.redirect(`${config.firstPath}/posts`)
     })
     .catch(next)
 })

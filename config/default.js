@@ -11,5 +11,6 @@ module.exports = {
     "前端",
     "NodeJS",
     "其他"
-  ]
+  ],
+  firstPath: '/myblog'
 }

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const config = require('config-lite')(__dirname)
 
 const checkLogin = require('../middlewares/check').checkLogin
 
@@ -9,7 +10,7 @@ router.get('/', checkLogin, function (req, res, next) {
   req.session.user = null
   req.flash('success', '登出成功')
   // 登出成功后跳转到主页
-  res.redirect('/posts')
+  res.redirect(`${config.firstPath}/posts`)
 })
 
 module.exports = router
