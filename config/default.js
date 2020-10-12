@@ -12,5 +12,6 @@ module.exports = {
     "NodeJS",
     "其他"
   ],
-  firstPath: '/myblog'
+  firstPath: '/myblog',
+  staticDir: '/static_myblog'
 }
