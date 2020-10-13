@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha",
-    "start": "cross-env NODE_ENV=production pm2 start index.js --name 'myblog'",
-    "stop": "cross-env NODE_ENV=production pm2 stop myblog",
+    "start": "pm2 start index.js --name 'myblog'",
+    "stop": "pm2 stop myblog",
     "lint": "eslint --fix config lib middlewares models routes test"
   },
   "author": "nswbmw",
