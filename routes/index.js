@@ -18,7 +18,7 @@ module.exports = function (app) {
 
     if (!res.headersSent) {
       if('production' === process.env.NODE_ENV) {
-        res.redirect(`/404.html`)
+        res.redirect(`${firstPath}/404`)
       } else {
         res.status(404).render('404')
       }
