@@ -24,7 +24,9 @@ if ('production' !== process.env.NODE_ENV) {
 }
 console.log('环境变量')
 console.log(process.env.NODE_ENV)
+console.log('-----------------')
 console.log(staticDir)
+console.log(config.staticDir)
 
 // session 中间件
 app.use(session({
