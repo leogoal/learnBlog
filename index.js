@@ -16,6 +16,9 @@ app.set('views', path.join(__dirname, 'views'))
 // 设置模板引擎为 ejs
 app.set('view engine', 'ejs')
 
+console.log('环境变量')
+console.log(process.env.NODE_ENV)
+
 let staticDir = config.staticDir;
 if ('production' !== process.env.NODE_ENV) {
   // 设置静态文件目录, 线上使用 nginx 代理静态资源
