@@ -15,8 +15,13 @@ module.exports = function (app) {
 
   // 404 page
   app.use(function (req, res) {
+
     if (!res.headersSent) {
-      res.status(404).render('404')
+      if('production' === process.env.NODE_ENV) {
+        res.redirect(`/404.html`)
+      } else {
+        res.status(404).render('404')
+      }
     }
   })
 }
