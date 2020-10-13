@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha",
-    "start": "export NODE_ENV='production' && pm2 start index.js --name 'myblog'",
+    "start": "export NODE_ENV='production' && node index.js",
     "stop": "pm2 stop myblog",
     "lint": "eslint --fix config lib middlewares models routes test"
   },
