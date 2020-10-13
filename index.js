@@ -22,6 +22,9 @@ if ('production' !== process.env.NODE_ENV) {
   app.use(express.static(path.join(__dirname, `${staticDir}`)))
   staticDir = '';
 }
+console.log('环境变量')
+console.log(process.env.NODE_ENV)
+console.log(staticDir)
 
 // session 中间件
 app.use(session({
