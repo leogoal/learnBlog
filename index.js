@@ -16,9 +16,11 @@ app.set('views', path.join(__dirname, 'views'))
 // 设置模板引擎为 ejs
 app.set('view engine', 'ejs')
 
+let staticDir = config.staticDir;
 if ('production' !== process.env.NODE_ENV) {
   // 设置静态文件目录, 线上使用 nginx 代理静态资源
-  app.use(express.static(path.join(__dirname, `${config.staticDir}`)))
+  app.use(express.static(path.join(__dirname, `${staticDir}`)))
+  staticDir = '';
 }
 
 // session 中间件
@@ -50,7 +52,7 @@ app.locals.blog = {
   description: pkg.description,
   tags: config.tags,
   firstPath: config.firstPath,
-  staticDir: config.staticDir
+  staticDir: staticDir
 }
 
 // 添加模板必需的三个变量
