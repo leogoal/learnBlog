@@ -20,8 +20,11 @@ let staticDir = config.staticDir;
 if ('production' !== process.env.NODE_ENV) {
   // 设置静态文件目录, 线上使用 nginx 代理静态资源
   app.use(express.static(path.join(__dirname, `${staticDir}`)))
-  staticDir = "";
+  staticDir = ""
 }
+console.log("环境变量")
+console.log(process.env.NODE_ENV)
+console.log(staticDir);
 
 // session 中间件
 app.use(session({
