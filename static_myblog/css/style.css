@@ -11,6 +11,10 @@ a:hover {
   border-bottom: 3px solid #0169c0;
 }
 
+a.avatar:hover {
+  border-bottom: none;
+}
+
 .button {
   background-color: #0169c0 !important;
   color: #fff !important;
