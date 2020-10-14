@@ -5,7 +5,7 @@ module.exports = {
     key: 'myblog',
     maxAge: 2592000000
   },
-  mongodb: 'mongodb://localhost:27017/myblog10',
+  mongodb: 'mongodb://root:messilihao10@localhost:27017/myblog10',
   tags: [
     "H5CQ",
     "前端",
