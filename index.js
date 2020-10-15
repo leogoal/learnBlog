@@ -25,6 +25,8 @@ if ('production' !== process.env.NODE_ENV) {
 
 // session 中间件
 const sessionCfg = config.get('session')
+const mongodbCfg = config.get('mongodb')
+const mongodbUrl = `mongodb://${config.get('db.usr')}:${config.get('db.pwd')}@${mongodbCfg.domain}:${mongodbCfg.port}/${mongodbCfg.db}`
 app.use(session({
   name: sessionCfg.key, // 设置 cookie 中保存 session id 的字段名称
   secret: sessionCfg.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
@@ -35,7 +37,7 @@ app.use(session({
     httpOnly: false
   },
   store: new MongoStore({// 将 session 存储到 mongodb
-    url: config.get('mongodb')// mongodb 地址
+    url: mongodbUrl // mongodb 地址
   })
 }))
 // flash 中间件，用来显示通知

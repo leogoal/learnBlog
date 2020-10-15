@@ -5,7 +5,11 @@
     "key": "myblog",
     "maxAge": 2592000000
   },
-  "mongodb": "mongodb://lh2:messi111@localhost:27017/myblog10",
+  "mongodb": {
+    "domain": "localhost",
+    "port": 27017,
+    "db": "myblog10"
+  },
   "tags": [
     "H5CQ",
     "前端",
