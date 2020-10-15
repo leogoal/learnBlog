@@ -1,9 +1,9 @@
-const config = require('config-lite')(__dirname)
+const config = require('config')
 module.exports = {
   checkLogin: function checkLogin (req, res, next) {
     if (!req.session.user) {
       req.flash('error', '未登录')
-      return res.redirect(`${config.firstPath}/signin`)
+      return res.redirect(`${config.get('firstPath')}/signin`)
     }
     next()
   },

@@ -3,7 +3,8 @@ const path = require('path')
 const sha1 = require('sha1')
 const express = require('express')
 const router = express.Router()
-const config = require('config-lite')(__dirname)
+const config = require('config')
+const firstPath = config.get('firstPath')
 
 const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
@@ -51,7 +52,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       }
     })
     req.flash('error', e.message)
-    return res.redirect(`${config.firstPath}/signup`)
+    return res.redirect(`${firstPath}/signup`)
   }
 
   // 明文密码加密
@@ -76,7 +77,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       // 写入 flash
       req.flash('success', '注册成功')
       // 跳转到首页
-      res.redirect(`${config.firstPath}/posts`)
+      res.redirect(`${firstPath}/posts`)
     })
     .catch(function (e) {
       // 注册失败，异步删除上传的头像
@@ -89,7 +90,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
       // 用户名被占用则跳回注册页，而不是错误页
       if (e.message.match('duplicate key')) {
         req.flash('error', '用户名已被占用')
-        return res.redirect(`${config.firstPath}/signup`)
+        return res.redirect(`${firstPath}/signup`)
       }
       next(e)
     })

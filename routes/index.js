@@ -1,5 +1,5 @@
-const config = require('config-lite')(__dirname)
-const firstPath = config.firstPath;
+const config = require('config')
+const firstPath = config.get('firstPath');
 
 module.exports = function (app) {
   app.get(`${firstPath}`, function (req, res) {

@@ -3,7 +3,7 @@ const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
-const config = require('config-lite')(__dirname)
+const config = require('config')
 const routes = require('./routes')
 const pkg = require('./package')
 const winston = require('winston')
@@ -16,25 +16,26 @@ app.set('views', path.join(__dirname, 'views'))
 // 设置模板引擎为 ejs
 app.set('view engine', 'ejs')
 
-let staticDir = config.staticDir;
+let staticDir = config.get('staticDir')
 if ('production' !== process.env.NODE_ENV) {
   // 设置静态文件目录, 线上使用 nginx 代理静态资源
   app.use(express.static(path.join(__dirname, `${staticDir}`)))
-  staticDir = '';
+  staticDir = ""
 }
 
 // session 中间件
+const sessionCfg = config.get('session')
 app.use(session({
-  name: config.session.key, // 设置 cookie 中保存 session id 的字段名称
-  secret: config.session.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
+  name: sessionCfg.key, // 设置 cookie 中保存 session id 的字段名称
+  secret: sessionCfg.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
   resave: true, // 强制更新 session
   saveUninitialized: false, // 设置为 false，强制创建一个 session，即使用户未登录
   cookie: {
-    maxAge: config.session.maxAge,// 过期时间，过期后 cookie 中的 session id 自动删除
+    maxAge: sessionCfg.maxAge,// 过期时间，过期后 cookie 中的 session id 自动删除
     httpOnly: false
   },
   store: new MongoStore({// 将 session 存储到 mongodb
-    url: config.mongodb// mongodb 地址
+    url: config.get('mongodb')// mongodb 地址
   })
 }))
 // flash 中间件，用来显示通知
@@ -42,7 +43,7 @@ app.use(flash())
 
 // 处理表单及文件上传的中间件
 app.use(require('express-formidable')({
-  uploadDir: path.join(__dirname, `${config.staticDir}/img`), // 上传文件目录
+  uploadDir: path.join(__dirname, `${staticDir}/img`), // 上传文件目录
   keepExtensions: true// 保留后缀
 }))
 
@@ -50,8 +51,8 @@ app.use(require('express-formidable')({
 app.locals.blog = {
   title: pkg.name,
   description: pkg.description,
-  tags: config.tags,
-  firstPath: config.firstPath,
+  tags: config.get('tags'),
+  firstPath: config.get('firstPath'),
   staticDir: staticDir
 }
 
@@ -96,7 +97,7 @@ app.use(expressWinston.errorLogger({
 app.use(function (err, req, res, next) {
   console.error(err)
   req.flash('error', err.message)
-  res.redirect(`${config.firstPath}/posts`)
+  res.redirect(`${config.get('firstPath')}/posts`)
 })
 
 if (module.parent) {
@@ -104,8 +105,8 @@ if (module.parent) {
   module.exports = app
 } else {
   // 监听端口，启动程序
-  app.listen(config.port, function () {
-    console.log(`${pkg.name} listening on port ${config.port}`)
+  app.listen(config.get('port'), function () {
+    console.log(`${pkg.name} listening on port ${config.get('port')}`)
   })
 
 }
