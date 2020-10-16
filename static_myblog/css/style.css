@@ -7,6 +7,20 @@ body {
   padding-top: 40px;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  width: 100%;
+  background: #222;
+}
+
+footer p {
+  color: #999;
+  text-align: center;
+}
+
 a:hover {
   border-bottom: 3px solid #0169c0;
 }
